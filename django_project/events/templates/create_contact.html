@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">  
+<head>  
+    <title>Create Conctact</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+       
+        }
+    
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;        
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crea tu Contacto</h1>
+        <button><a href="{% url 'index' %}">Inicio</a></button>
+        
+        <form method="POST" action="">
+            {% csrf_token %}
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Introduce tu Nombre" required>
+            <label for="telefono">Telefono</label>
+            <input type="number" id="telefono" name="telefono" placeholder="Introduce tu Telefono" required>
+                     
+            <button type="submit">Crear</button>
+            
+        </form>
+    </div>
+</body>
+</html>

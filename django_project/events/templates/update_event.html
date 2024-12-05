@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edita tu Actividad</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <label for="event">Nombre de la Actividad:</label>
+            <input type="text" id="event" name="event" value="{{ event.event }}" required>
+            
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+                <option value="Conferencia" {% if event.category == "Conferencia" %}selected{% endif %}>Conferencia</option>
+                <option value="Clases" {% if event.category == "Clases" %}selected{% endif %}>Clases</option>
+                <option value="Seminario" {% if event.category == "Seminario" %}selected{% endif %}>Seminario</option>
+                <option value="Bootcamp" {% if event.category == "Bootcamp" %}selected{% endif %}>Bootcamp</option>
+                <option value="Otro" {% if event.category == "Otro" %}selected{% endif %}>Otro</option>
+            </select>
+            
+            <label for="date">Fecha:</label>
+            <input type="date" id="date" name="date" value="{{ event.date }}" required>
+            
+            <button type="submit">Editar</button>
+        </form>
+    </div>
+</body>
+</html>

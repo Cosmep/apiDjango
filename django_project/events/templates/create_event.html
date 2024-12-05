@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">  
+<head>  
+    <title>Create Event</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+       
+        }
+    
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;        
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crea tu Actividad</h1>
+        <button><a href="{% url 'index' %}">Inicio</a></button>
+        
+        <form method="POST" action="">
+            {% csrf_token %}
+            <label for="event">Nombre de la Actividad:</label>
+            <input type="text" id="event" name="event" placeholder="Introduce tu actividad" required>
+            
+            <label for="category">Categoria:</label>
+            <select id="category" name="category" required>
+                <option value="">-- Selecciona la Categoria --</option>
+                <option value="Conferencia">Conferencia</option>
+                <option value="Clases">Clases</option>
+                <option value="Seminario">Seminario</option>
+                <option value="Other">Bootcamp</option>
+                <option value="Otro">Otro</option> 
+            </select>            
+            <label for="date">Fecha:</label>
+            <input type="date" id="date" name="date" required>            
+            <button type="submit">Crear</button>
+            <button><a href="{% url 'event_list' %}">Ver las Actividades</a></button>
+        </form>
+    </div>
+</body>
+</html>

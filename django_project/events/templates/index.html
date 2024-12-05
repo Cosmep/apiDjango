@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">    
+<head>  
+    <title>Manejador de Eventos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);            
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+      
+       button {
+            width: 50%;
+            margin: 0 auto;
+            padding: 10px;
+            margin-top: 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #007BFF;         
+            font-size: 20px; 
+            text-transform: uppercase;          
+            border: none;
+            cursor: pointer; 
+            display: block;           
+        }
+     
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+        
+        }
+        img{
+            margin: 0 auto;
+            padding: 10px;
+            display: block;   
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <h1>Actividades</h1>
+            <button><a href="{% url 'create_event' %}">Agregar la Actividad</a></button>
+                <br>
+            <button><a href="{% url 'event_list' %}">Ver las Actividades</a></button>
+            <br>
+            <button><a href="{% url 'create_contact' %}">Ver el Contacto</a></button>
+        </form>
+    </div>  
+    {% load static %}   
+    <img src="{% static 'images/django.jpg' %}" alt="">   
+</body>
+</html>

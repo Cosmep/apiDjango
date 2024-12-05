@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>     
+    <title>Event List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        a {
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;          
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .delete-button {
+            text-decoration: none;
+            height: 28px;
+            background-color: #FF4C4C;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .delete-button:hover {           
+            background-color: #FF0000;
+        }        
+    </style>
+</head>
+<body>    
+    <div class="container">
+        <h1>Lista de Actividades</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Actividad</th>
+                    <th>Categoria</th>
+                    <th>Fecha</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                <tr>
+                    <td>{{ event.id }}</td>
+                    <td>{{ event.event }}</td>
+                    <td>{{ event.category }}</td>
+                    <td>{{ event.date }}</td>
+                    <td>
+                        <a href="{% url 'update_event' pk=event.id %}">Editar</a> | 
+                        <form method="POST" style="display:inline;" action="">
+                            {% csrf_token %}
+                            <input type="hidden" name="event_id" value="{{ event.id }}">
+                            <button type="submit" class="delete-button" name="delete">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="{% url 'create_event' %}">Agregar</a>
+        <a href="{% url 'index' %}">Inicio</a>
+
+        <!-- Función para imprimir solo la tabla de eventos integrado con JavaScript -->
+         <!-- Boton para imprimir las actividades -->      
+        <button onclick="printEvents()">Imprimir Actividades</button>
+         
+        <script>            
+            function printEvents() {
+                var printContents = document.querySelector("table").outerHTML;  
+                var originalContents = document.body.innerHTML;                
+                document.body.innerHTML = printContents;    
+                window.print();      
+                document.body.innerHTML = originalContents;
+            }
+        </script>
+
+    </div>    
+</body>
+</html>
